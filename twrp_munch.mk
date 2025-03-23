@@ -2,11 +2,20 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+PRODUCT_RELEASE_NAME := munch
+
+DEVICE_PATH := device/xiaomi/$(PRODUCT_RELEASE_NAME)
+
+
 # Inherit from munch device
-$(call inherit-product, device/xiaomi/munch/device.mk)
+$(call inherit-product, $(DEVICE_PATH)/device.mk)
 
 # Inherit some common LineageOS stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
+
+# Inherit any OrangeFox-specific settings
+$(call inherit-product-if-exists, $(DEVICE_PATH)/fox_mikona.mk)
+
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_NAME := twrp_munch

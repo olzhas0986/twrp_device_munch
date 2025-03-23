@@ -39,6 +39,16 @@ POCO F4 uses a Virtual A/B Partition Scheme!
 
 You can find a full compile guide for OrangeFox [Here](https://wiki.orangefox.tech/en/dev/building)
 
+Make sure to clone Proton clang 13:
+```
+git clone https://github.com/kdrag0n/proton-clang --depth=1 prebuilts/clang/host/linux-x86/clang-13.0.0
+```
+
+Clone the kernel:
+```
+git clone https://github.com/AOSPA/android_kernel_xiaomi_sm8250 --depth=1 kernel/xiaomi/munch
+```
+
 Lunch command :
 ```
 lunch twrp_munch-eng && mka adbd bootimage
@@ -48,4 +58,4 @@ lunch twrp_munch-eng && mka adbd bootimage
 
 ## Credits
 - [Original Tree By Darth9](https://gitlab.com/OrangeFox/device/alioth)
-- [PixelPlusUI kernel](https://github.com/PixelPlusUI-Devices/kernel_xiaomi_alioth)
+- [AOSPA uvite kernel](https://github.com/AOSPA/android_kernel_xiaomi_sm8250)

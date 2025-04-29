@@ -1,7 +1,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-# Copyright (C) 2022 The OrangeFox Recovery Project
+# Copyright (C) 2022-2025 The OrangeFox Recovery Project
+# SPDX-License-Identifier: GPL-3.0-or-later
 #
 
 DEVICE_PATH := device/xiaomi/munch
@@ -71,6 +72,7 @@ BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
 TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
 
 # Kernel - Default to building from source
+ifneq ($(FOX_BUILD_FULL_KERNEL_SOURCES),0)
 # -----------------------------------------------------
 TARGET_KERNEL_SOURCE := kernel/xiaomi/$(PRODUCT_RELEASE_NAME)
 TARGET_KERNEL_CONFIG := vendor/$(PRODUCT_RELEASE_NAME)_defconfig
@@ -82,6 +84,9 @@ TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/clang-$(
 TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/misc/$(HOST_OS)-x86/dtc/dtc
 LLVM := 1
 LLVM_IAS := 1
+else
+  TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/$(BOARD_KERNEL_IMAGE_NAME)
+endif
 # -----------------------------------------------------
 
 # 12.1 manifest requirements

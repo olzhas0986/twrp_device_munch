@@ -1,5 +1,5 @@
-# OrangeFox device tree for POCO F4 (munch)
-For building OrangeFox Recovery for POCO F4
+# TWRP device tree for POCO F4 (munch)
+For building TWRP Recovery for POCO F4
 
 The POCO F4 (codenamed _"munch"_) is a high end smartphone from POCO.
 
@@ -7,12 +7,12 @@ The POCO F4 (codenamed _"munch"_) is a high end smartphone from POCO.
 
 | Device       | POCO F4                                     |
 | -----------: | :------------------------------------------ |
-| SoC          | Qualcomm SM8250 Snapdragon 870 5G           |
-| CPU          | 8x Qualcomm® Kryo™ 585 up to 2.84GHz        |
+| SoC          | Qualcomm SM8250-AC Snapdragon 870 5G           |
+| CPU          | 4x Kryo 585 1804MHz, 3x Cortex-A77 2419MHz, Cortex-A77 3187MHz |
 | GPU          | Adreno 650                                  |
-| Memory       | 8GB / 6GB  (LPDDR 5)                        |
-| Shipped Android version | 11                               |
-| Storage      | 128GB  (UFS 3.1)                            |
+| Memory       | 12GB / 8GB / 6GB  (LPDDR 5)                        |
+| Shipped Android version | 12  (MIUI 13)                             |
+| Storage      | 128/256GB  (UFS 3.1)                            |
 | Battery      | Li-Po 4500 mAh, non-removable               |
 | Dimensions   | 163.2 x 75.95 x 7.7 mm                       |
 | Display      | 1080 x 2400 (20:9), 6.67 inches             |
@@ -37,21 +37,24 @@ POCO F4 uses a Virtual A/B Partition Scheme!
 
 ## Compile
 
-You can find a full compile guide for OrangeFox [Here](https://wiki.orangefox.tech/en/dev/building)
+1. Init repo && sync sources
+https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp
 
-Make sure to clone Proton clang 13:
+2. Make sure to clone Proton clang 13:
 ```
 git clone https://github.com/kdrag0n/proton-clang --depth=1 prebuilts/clang/host/linux-x86/clang-13.0.0
 ```
 
-Clone the kernel:
+3. Clone the kernel:
 ```
 git clone https://github.com/AOSPA/android_kernel_xiaomi_sm8250 --depth=1 kernel/xiaomi/munch
 ```
 
-Lunch command :
+4. Clone this repo in device/xiaomi/munch
+
+Build command :
 ```
-lunch twrp_munch-eng && mka adbd bootimage
+export ALLOW_MISSING_DEPENDENCIES=true && lunch twrp_munch-eng && mka adbd bootimage
 ```
 
 

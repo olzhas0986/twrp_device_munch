@@ -116,7 +116,7 @@ PRODUCT_PACKAGES += \
 
 # OEM otacert
 PRODUCT_EXTRA_RECOVERY_KEYS += \
-    vendor/recovery/security/miui
+    device/xiaomi/munch/security/miui
 
 # skip some snapshot stuff in update_engine
 PRODUCT_PROPERTY_OVERRIDES += \

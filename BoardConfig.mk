@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 
-DEVICE_PATH := device/xiaomi/alioth
+DEVICE_PATH := device/xiaomi/munch
 
 # Architecture
 TARGET_ARCH := arm64
@@ -29,7 +29,7 @@ TARGET_IS_64_BIT := true
 BOARD_VENDOR := xiaomi
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := alioth,aliothin
+TARGET_OTA_ASSERT_DEVICE := munch,munchin
 
 # Platform
 PRODUCT_PLATFORM := kona
@@ -97,8 +97,7 @@ ifeq ($(FOX_BUILD_FULL_KERNEL_SOURCES),1)
     LLVM := 1
     LLVM_IAS := 1
 else
-    TARGET_PREBUILT_KERNEL := $(KERNEL_PATH)/Image.gz-dtb
-#    BOARD_PREBUILT_DTBOIMAGE := $(KERNEL_PATH)/dtbo.img
+    TARGET_PREBUILT_KERNEL := $(KERNEL_PATH)/kernel
 endif
 
 BOARD_USES_RECOVERY_AS_BOOT := true
@@ -201,7 +200,7 @@ ifeq ($(FOX_VENDOR_BOOT_RECOVERY),1)
       BOARD_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT := true
   endif
 
-  # alioth vendor_boot ROMs still only have a v3 header
+  # munch vendor_boot ROMs still only have a v3 header
   # disable the reflash menu, until all vendor_boot ROMs have a v4 header - else it won't work
   OF_NO_REFLASH_CURRENT_ORANGEFOX := 1
 endif

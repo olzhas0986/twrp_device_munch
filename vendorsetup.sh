@@ -72,16 +72,12 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	# instruct magiskboot v24+ to always patch the vbmeta header when patching the recovery/boot image; do *not* remove!
         export FOX_PATCH_VBMETA_FLAG="1"
 
-	# use the latest magiskboot binary
-	export FOX_USE_UPDATED_MAGISKBOOT=1
-
 	export FOX_SETTINGS_ROOT_DIRECTORY=/data/recovery
 	export FOX_MISCELLANEOUS_ROOT_DIRECTORY=/sdcard
 
 	# vendor_boot-as-recovery
 	if [ "$FOX_VENDOR_BOOT_RECOVERY" = "1" ]; then
 		export FOX_VARIANT="vBaR"
-		export FOX_INSTALLER_VENDOR_BOOT_RAMDISK_INSTALL=1
 	fi
 else
 	if [ -z "$FOX_BUILD_DEVICE" -a -z "$BASH_SOURCE" ]; then

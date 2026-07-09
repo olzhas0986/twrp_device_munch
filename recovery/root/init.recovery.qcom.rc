@@ -60,6 +60,13 @@ service vendor.qti.vibrator /system/bin/vendor.qti.hardware.vibrator.service
     setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     seclabel u:r:recovery:s0
 
+service healthy-boot /system/bin/healthy-boot.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
 service unified-script /system/bin/unified-script.sh
     user root
     group root
@@ -73,15 +80,11 @@ on post-fs
 #on init
 #    start hwservicemanager
 #    setprop crypto.ready 1
-#
-# potential workaround for HyperOS ROMs where 'crypto.ready' isn't set early enough by prepdecrypt.sh (causing decryption failure on flashed recovery,
-# while being successful on hot-booted recovery). It can be set anywhere (init, boot, post-fs, etc) - here we set it as late as possible, to avoid new
-# problems with other ROMs
-on property:prepdecrypt.vendor_mounted=1
-    setprop crypto.ready 1
 
 on boot
     chmod 0777 /system/bin/unified-script.sh
+    chmod 0777 /system/bin/healthy-boot.sh
+    start healthy-boot
     start unified-script
 
 on boot

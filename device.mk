@@ -1,7 +1,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-# Copyright (C) 2022-2025 The OrangeFox Recovery Project
+# Copyright (C) 2022-2024 The OrangeFox Recovery Project
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 
@@ -65,6 +65,8 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-service \
     bootctrl.xiaomi_sm8250.recovery \
     android.hardware.boot@1.1-impl-qti.recovery
+#    bootctrl.kona \
+#    bootctrl.kona.recovery
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -118,10 +120,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     device/xiaomi/munch/security/miui
 
-# skip some snapshot stuff in update_engine
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.virtual_ab.skip_snapshot_creation=true
-
 # vendor_boot
 ifeq ($(FOX_VENDOR_BOOT_RECOVERY),1)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
@@ -143,12 +141,4 @@ PRODUCT_COPY_FILES += \
 	# $(DEVICE_PATH)/recovery/root/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
 endif
 # end: vendor_boot
-
-#--------------------------
-# to work around a (hash verification) ROM flashing error caused by crDroid+NikGapps on munch
-# (see the edits in update_engine's payload_consumer/filesystem_verifier_action.cc -
-# ro.virtual_ab.skip_verify_source_hash=true)
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.virtual_ab.skip_verify_source_hash=true
-#--------------------------
 #

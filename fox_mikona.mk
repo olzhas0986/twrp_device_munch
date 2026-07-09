@@ -51,17 +51,12 @@ OF_BIND_MOUNT_SDCARD_ON_FORMAT := 1
 # refresh encryption props before formatting data
 #  OF_REFRESH_ENCRYPTION_PROPS_BEFORE_FORMAT := 1
 
-ifeq ($(FOX_VENDOR_BOOT_RECOVERY),1)
-   OF_RECOVERY_AB_FULL_REFLASH_RAMDISK := 1
-else
+ifneq ($(FOX_VENDOR_BOOT_RECOVERY),1)
    OF_USE_LZ4_COMPRESSION := 1
 endif
 
 # build all the partition tools
 OF_ENABLE_ALL_PARTITION_TOOLS := 1
-
-# add dmctl
-OF_USE_DMCTL := 1
 
 # frp
 OF_ENABLE_FRP_ADDON := 1

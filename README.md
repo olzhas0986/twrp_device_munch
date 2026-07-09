@@ -1,44 +1,25 @@
-# OrangeFox device tree for alioth (Xiaomi Mi 11X / Redmi K40 / POCO F3)
-This tree is for building OrangeFox Recovery for the _alioth_ devices
+TWRP Device configuration for POCO F4 / Redmi K40S
+=========================================
 
-The Xiaomi Mi 11X (codenamed _"aliothin"_), Redmi K40 / POCO F3 (codenamed _"alioth"_) is a mid range smartphone from Xiaomi.
+The POCO F4 / Redmi K40S (codenamed munch) is a high-end smartphone from Xiaomi.
 
-# Device specifications
+It was announced in June (F4) / March (K40S)
 
-| Device       | Xiaomi Mi 11X / Redmi K40 / POCO F3                        |
-| -----------: | :----------------------------------------------------------|
-| SoC          | Qualcomm SM8250 Snapdragon 870 5G                          |
-| CPU          | 8x Qualcomm® Kryo™ 585 up to 2.84GHz                       |
-| GPU          | Adreno 650                                                 |
-| Memory       | 8GB / 6GB  (LPDDR 5)                                       |
-| Shipped Android version | 11                    			    |
-| Storage      | 128GB  (UFS 3.1)                                           |
-| Battery      | Li-Po 4520 mAh, non-removable                              |
-| Dimensions   | 163.7 x 76.4 x 7.8 mm                                      |
-| Display      | 1080 x 2400 (20:9), 6.67 inches                            |
+## Device specifications
 
-## Features
+Basic   | Spec Sheet
+-------:|:-------------------------
+Platform | Snapdragon® 870 5G (SM8250-AC)
+Storage & RAM | 128/256 GB UFS 3.1, 6/8/12 GB LPDDR5 RAM
+Shipped Android Version | Android 12
+Battery | 4500 mAh Li-Po (non-removable), 67W quick charge
+Display | 6.67 inch, 1080 x 2400 pixels, E4 AMOLED, Dolby Vision, HDR10+, 120Hz
+Camera | 64 MP (POCO F4) / 48 MP (Redmi K40S) (main), 8 MP (ultrawide), 2 MP (macro), 20 MP (front)
 
-**Works**
+## Device picture
 
-- Booting
-- **Decryption** (Android 12+)
-- ADB
-- MTP
-- OTG
-- vA/B partition functions
-- Vibration
+![POCO F4](https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/Untitled8469.jpg)
 
-The Mi 11X / Redmi K40 / POCO F3 devices use a Virtual A/B Partition Scheme!
-
-## Building
-
-You can find a full compile guide for OrangeFox [Here](https://wiki.orangefox.tech/en/dev/building)
-
-_Lunch_ command :
-```
-lunch twrp_alioth-eng && mka adbd bootimage
-```
 
 ## Credits
 - [Original alioth tree by Nebrassy](https://github.com/TeamWin/android_device_xiaomi_alioth)

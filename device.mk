@@ -5,9 +5,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 
-# Our various search paths for Soong namespaces
-MIKONA_SOONG_PATHS := device/xiaomi/munch #device/xiaomi/sm8250-common # device/xiaomi/mikona device/xiaomi/munch
-
 # Configure base.mk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
@@ -32,7 +29,7 @@ TW_FRAMERATE := 120
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-	$(MIKONA_SOONG_PATHS) \
+	$(LOCAL_PATH) \
 	vendor/qcom/opensource/commonsys-intf/display
 
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -65,8 +62,6 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-service \
     bootctrl.xiaomi_sm8250.recovery \
     android.hardware.boot@1.1-impl-qti.recovery
-#    bootctrl.kona \
-#    bootctrl.kona.recovery
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -115,30 +110,3 @@ BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 # Vibrator
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.vibrator.service
-
-# OEM otacert
-PRODUCT_EXTRA_RECOVERY_KEYS += \
-    device/xiaomi/munch/security/miui
-
-# vendor_boot
-ifeq ($(FOX_VENDOR_BOOT_RECOVERY),1)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
-
-# Enable project quotas and casefolding for emulated storage without sdcardfs
-$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
-
-PRODUCT_PACKAGES += \
-	linker.vendor_ramdisk \
-	e2fsck.vendor_ramdisk \
-	resize2fs.vendor_ramdisk \
-	fsck.vendor_ramdisk \
-	tune2fs.vendor_ramdisk
-
-# copy vendor_boot fstab to first_stage_ramdisk
-PRODUCT_COPY_FILES += \
-	$(DEVICE_PATH)/recovery/root/fstab-generic.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
-	# $(DEVICE_PATH)/recovery/root/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
-endif
-# end: vendor_boot
-#
